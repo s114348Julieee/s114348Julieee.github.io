@@ -1,183 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Art Portfolio</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bold Editorial Portfolio</title>
 
-<!-- Google Fonts: playful but readable -->
-<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@300;500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<!-- Fonts: close to Koyama Sendai feel -->
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100,700;125,800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
+:root {
+  --ink: #111;
+  --paper: #fffdf8;
+  --line: #111;
+}
 
-/* ===== GLOBAL STYLES ===== */
+* { box-sizing: border-box; }
+
 body {
   margin: 0;
+  background: var(--paper);
+  color: var(--ink);
   font-family: 'Inter', sans-serif;
-  background: #ffffff;
-  color: #1c1c1c;
   opacity: 0;
   transition: opacity 0.6s ease;
 }
 body.loaded { opacity: 1; }
 .fade-out { opacity: 0 !important; transition: opacity 0.4s ease; }
 
-/* ===== HEADER ===== */
-header {
-  padding: 2rem 1.5rem;
-  text-align: center;
-  font-family: 'Spectral', serif;
-}
-header h1 {
-  font-size: 2.8rem;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-}
-header p {
-  font-size: 1.1rem;
-  color: #555;
-  margin-top: 0.5rem;
-}
-
 /* ===== NAV ===== */
 nav {
-  margin: 1.5rem auto;
-  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  border-bottom: 3px solid var(--line);
+}
+nav .logo {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 800;
+  font-size: 1.2rem;
+  letter-spacing: 0.05em;
 }
 nav a {
-  margin: 0 1rem;
   text-decoration: none;
+  color: var(--ink);
+  margin-left: 1.5rem;
   font-weight: 600;
-  color: #333;
 }
-nav a:hover { text-decoration: underline; }
 
-/* ===== SECTIONS ===== */
+/* ===== HERO ===== */
+.hero {
+  padding: 6rem 2rem 5rem;
+  border-bottom: 3px solid var(--line);
+}
+.hero h1 {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 800;
+  font-size: clamp(3.5rem, 7vw, 6rem);
+  line-height: 0.95;
+  letter-spacing: 0.02em;
+  max-width: 900px;
+}
+.hero p {
+  margin-top: 2rem;
+  font-size: 1.1rem;
+  max-width: 520px;
+}
+
+/* ===== SECTION ===== */
 section {
-  padding: 4rem 1.5rem;
-  max-width: 1100px;
-  margin: auto;
+  padding: 5rem 2rem;
+  border-bottom: 3px solid var(--line);
 }
 .section-title {
-  font-family: 'Spectral', serif;
-  font-size: 2.2rem;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
-  text-align: center;
-  letter-spacing: 0.3px;
+  font-family: 'Archivo', sans-serif;
+  font-weight: 800;
+  font-size: 2.6rem;
+  margin-bottom: 2.5rem;
+  letter-spacing: 0.04em;
 }
 
 /* ===== IMAGE GRID ===== */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3rem;
 }
 .placeholder {
-  background: #f2f2f2;
-  height: 0;
-  padding-bottom: 66%;
-  border-radius: 12px;
   position: relative;
-  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  border: 3px solid var(--line);
+  background: #f1f1f1;
 }
-.placeholder img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.placeholder::after {
+  content: 'IMAGE';
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Archivo', sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  font-size: 1rem;
+  color: #777;
 }
 
-/* ===== TEXT + FRAMES ===== */
-.frame {
-  border: 3px solid #ececec;
-  padding: 1rem;
-  border-radius: 8px;
-  text-align: center;
-  font-family: 'Spectral', serif;
-  color: #444;
-  font-size: 1.05rem;
-  margin-top: 0.6rem;
+/* ===== FEATURE STRIP ===== */
+.strip {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 3rem;
 }
 
 /* ===== FOOTER ===== */
 footer {
-  text-align: center;
-  padding: 3rem 1rem;
+  padding: 3rem 2rem;
   font-size: 0.9rem;
-  color: #666;
 }
 
+@media (max-width: 900px) {
+  .grid, .strip { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 
 <body>
 
-<!-- NAVIGATION -->
 <nav>
-  <a href="index.html">Home</a>
-  <a href="artwork.html">Artwork</a>
-  <a href="about.html">About</a>
-  <a href="contact.html">Contact</a>
+  <div class="logo">YOUR NAME</div>
+  <div>
+    <a href="index.html">Home</a>
+    <a href="artwork.html">Artwork</a>
+    <a href="about.html">About</a>
+  </div>
 </nav>
 
-<!-- HEADER -->
-<header>
-  <h1>Your Name’s Gallery</h1>
-  <p>A curated space for my artwork & inspirations</p>
-</header>
+<div class="hero">
+  <h1>ART<br>IS A<br>STATEMENT</h1>
+  <p>A bold, editorial-style portfolio for artwork, ideas, and visual experiments.</p>
+</div>
 
-<!-- FEATURED SECTION -->
 <section>
-  <h2 class="section-title">Featured Works</h2>
+  <h2 class="section-title">FEATURED</h2>
   <div class="grid">
-    <div class="placeholder"><!-- IMAGE 1 --></div>
-    <div class="placeholder"><!-- IMAGE 2 --></div>
-    <div class="placeholder"><!-- IMAGE 3 --></div>
+    <div class="placeholder"></div>
+    <div class="placeholder"></div>
   </div>
 </section>
 
-<!-- ARTWORK GRID -->
 <section>
-  <h2 class="section-title">Gallery</h2>
+  <h2 class="section-title">GALLERY</h2>
   <div class="grid">
-    <div class="placeholder"><!-- IMAGE 4 --></div>
-    <div class="placeholder"><!-- IMAGE 5 --></div>
-    <div class="placeholder"><!-- IMAGE 6 --></div>
-    <div class="placeholder"><!-- IMAGE 7 --></div>
+    <div class="placeholder"></div>
+    <div class="placeholder"></div>
+    <div class="placeholder"></div>
+    <div class="placeholder"></div>
   </div>
 </section>
 
-<!-- ABOUT / TEXT WITH FRAME -->
 <section>
-  <h2 class="section-title">About This Collection</h2>
-  <div class="frame">
-    This is a space where I explore visual storytelling, emotions, and ideas through my artwork. Replace this with your own description later.
+  <div class="strip">
+    <div>
+      <h2 class="section-title">ABOUT</h2>
+      <p>
+        This portfolio is inspired by editorial design, strong typography, and clear visual framing. 
+        Replace this text with your own artist statement later.
+      </p>
+    </div>
+    <div class="placeholder"></div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
-  © 2025 Your Name · Portfolio
+  © 2025 Your Name · GitHub Pages
 </footer>
 
 <script>
-// Page load fade-in
 document.addEventListener('DOMContentLoaded', () => {
   document.body.classList.add('loaded');
 });
 
-// Page transitions
-const navLinks = document.querySelectorAll('nav a');
-navLinks.forEach(link => {
+const links = document.querySelectorAll('nav a');
+links.forEach(link => {
   link.addEventListener('click', e => {
     e.preventDefault();
     document.body.classList.add('fade-out');
-    setTimeout(() => {
-      window.location = link.href;
-    }, 450);
+    setTimeout(() => window.location = link.href, 450);
   });
 });
 </script>
