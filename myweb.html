@@ -1,196 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Bold Editorial Portfolio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Creative Portfolio</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;700&display=swap" rel="stylesheet">
 
-<!-- Fonts: close to Koyama Sendai feel -->
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100,700;125,800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* --- 1. VARIABLES & RESET --- */
+        :root {
+            /* Happy Socks Inspired Palette */
+            --color-bg: #ffffff;
+            --color-text: #000000;
+            --color-primary: #FFD700; /* Vibrant Yellow */
+            --color-secondary: #FF007F; /* Hot Pink */
+            --color-tertiary: #00FFFF; /* Cyan */
+            --color-accent: #39FF14; /* Neon Green */
+            
+            --border-thick: 3px solid black;
+            --border-thin: 1px solid black;
+            --shadow-hard: 8px 8px 0px 0px rgba(0,0,0,1);
+            --shadow-hover: 4px 4px 0px 0px rgba(0,0,0,1);
+            
+            --trans-speed: 0.6s;
+            --trans-ease: cubic-bezier(0.22, 1, 0.36, 1);
+        }
 
-<style>
-:root {
-  --ink: #111;
-  --paper: #fffdf8;
-  --line: #111;
-}
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-* { box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            overflow-x: hidden;
+        }
 
-body {
-  margin: 0;
-  background: var(--paper);
-  color: var(--ink);
-  font-family: 'Inter', sans-serif;
-  opacity: 0;
-  transition: opacity 0.6s ease;
-}
-body.loaded { opacity: 1; }
-.fade-out { opacity: 0 !important; transition: opacity 0.4s ease; }
+        /* --- 2. TYPOGRAPHY --- */
+        h1, h2, h3 {
+            font-family: 'Archivo Black', sans-serif;
+            text-transform: uppercase;
+            line-height: 0.9;
+        }
 
-/* ===== NAV ===== */
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.5rem 2rem;
-  border-bottom: 3px solid var(--line);
-}
-nav .logo {
-  font-family: 'Archivo', sans-serif;
-  font-weight: 800;
-  font-size: 1.2rem;
-  letter-spacing: 0.05em;
-}
-nav a {
-  text-decoration: none;
-  color: var(--ink);
-  margin-left: 1.5rem;
-  font-weight: 600;
-}
+        h1 { font-size: clamp(3rem, 10vw, 8rem); }
+        h2 { font-size: clamp(2rem, 5vw, 4rem); margin-bottom: 2rem;}
+        p { font-size: 1.1rem; line-height: 1.6; max-width: 60ch;}
 
-/* ===== HERO ===== */
-.hero {
-  padding: 6rem 2rem 5rem;
-  border-bottom: 3px solid var(--line);
-}
-.hero h1 {
-  font-family: 'Archivo', sans-serif;
-  font-weight: 800;
-  font-size: clamp(3.5rem, 7vw, 6rem);
-  line-height: 0.95;
-  letter-spacing: 0.02em;
-  max-width: 900px;
-}
-.hero p {
-  margin-top: 2rem;
-  font-size: 1.1rem;
-  max-width: 520px;
-}
+        /* --- 3. UTILITIES & ANIMATIONS --- */
+        .wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-/* ===== SECTION ===== */
-section {
-  padding: 5rem 2rem;
-  border-bottom: 3px solid var(--line);
-}
-.section-title {
-  font-family: 'Archivo', sans-serif;
-  font-weight: 800;
-  font-size: 2.6rem;
-  margin-bottom: 2.5rem;
-  letter-spacing: 0.04em;
-}
+        /* The Transition Logic */
+        .reveal {
+            opacity: 0;
+            transform: translateY(80px) scale(0.95);
+            transition: all var(--trans-speed) var(--trans-ease);
+        }
 
-/* ===== IMAGE GRID ===== */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 3rem;
-}
-.placeholder {
-  position: relative;
-  aspect-ratio: 4 / 3;
-  border: 3px solid var(--line);
-  background: #f1f1f1;
-}
-.placeholder::after {
-  content: 'IMAGE';
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Archivo', sans-serif;
-  font-weight: 800;
-  letter-spacing: 0.15em;
-  font-size: 1rem;
-  color: #777;
-}
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
 
-/* ===== FEATURE STRIP ===== */
-.strip {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 3rem;
-}
+        /* --- 4. NAVIGATION --- */
+        nav {
+            padding: 2rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: var(--border-thick);
+            background: var(--color-bg);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
 
-/* ===== FOOTER ===== */
-footer {
-  padding: 3rem 2rem;
-  font-size: 0.9rem;
-}
+        .logo {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 1.5rem;
+            background: var(--color-text);
+            color: var(--color-bg);
+            padding: 5px 10px;
+            transform: rotate(-2deg);
+        }
 
-@media (max-width: 900px) {
-  .grid, .strip { grid-template-columns: 1fr; }
-}
-</style>
-</head>
+        .nav-links a {
+            text-decoration: none;
+            color: var(--color-text);
+            font-weight: 700;
+            margin-left: 2rem;
+            text-transform: uppercase;
+            position: relative;
+        }
 
-<body>
+        .nav-links a:hover {
+            color: var(--color-secondary);
+        }
 
-<nav>
-  <div class="logo">YOUR NAME</div>
-  <div>
-    <a href="index.html">Home</a>
-    <a href="artwork.html">Artwork</a>
-    <a href="about.html">About</a>
-  </div>
-</nav>
+        /* --- 5. HERO SECTION --- */
+        .hero {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--color-primary);
+            border-bottom: var(--border-thick);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
 
-<div class="hero">
-  <h1>ART<br>IS A<br>STATEMENT</h1>
-  <p>A bold, editorial-style portfolio for artwork, ideas, and visual experiments.</p>
-</div>
+        /* Decorative circles */
+        .deco-circle {
+            position: absolute;
+            border-radius: 50%;
+            border: var(--border-thick);
+            z-index: 0;
+        }
+        .c1 { width: 300px; height: 300px; background: var(--color-secondary); top: -50px; left: -50px; }
+        .c2 { width: 150px; height: 150px; background: var(--color-tertiary); bottom: 50px; right: 10%; }
 
-<section>
-  <h2 class="section-title">FEATURED</h2>
-  <div class="grid">
-    <div class="placeholder"></div>
-    <div class="placeholder"></div>
-  </div>
-</section>
+        .hero-content {
+            z-index: 1;
+            position: relative;
+        }
 
-<section>
-  <h2 class="section-title">GALLERY</h2>
-  <div class="grid">
-    <div class="placeholder"></div>
-    <div class="placeholder"></div>
-    <div class="placeholder"></div>
-    <div class="placeholder"></div>
-  </div>
-</section>
+        .hero h1 span {
+            display: block;
+            -webkit-text-stroke: 2px black;
+            color: transparent;
+        }
+        
+        .hero h1 span:first-child {
+            color: black;
+            -webkit-text-stroke: 0;
+        }
 
-<section>
-  <div class="strip">
-    <div>
-      <h2 class="section-title">ABOUT</h2>
-      <p>
-        This portfolio is inspired by editorial design, strong typography, and clear visual framing. 
-        Replace this text with your own artist statement later.
-      </p>
-    </div>
-    <div class="placeholder"></div>
-  </div>
-</section>
-
-<footer>
-  © 2025 Your Name · GitHub Pages
-</footer>
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  document.body.classList.add('loaded');
-});
-
-const links = document.querySelectorAll('nav a');
-links.forEach(link => {
-  link.addEventListener('click', e => {
-    e.preventDefault();
-    document.body.classList.add('fade-out');
-    setTimeout(() => window.location = link.href, 450);
-  });
-});
-</script>
-
-</body>
-</html>
+        /* --- 6. GALLERY / WORK --- */
+        .work-section {
+            padding: 5rem 0
