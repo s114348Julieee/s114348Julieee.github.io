@@ -1,117 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Art Portfolio with Page Transitions</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<title>Art Portfolio</title>
+
+<!-- Google Fonts: playful but readable -->
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@300;500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
 <style>
 
-/* ===== GLOBAL RESET ===== */
-* { margin: 0; padding: 0; box-sizing: border-box; }
+/* ===== GLOBAL STYLES ===== */
 body {
+  margin: 0;
   font-family: 'Inter', sans-serif;
-  background: #fffefb;
-  color: #222;
-  overflow-x: hidden;
-  transition: opacity 0.6s ease;
+  background: #ffffff;
+  color: #1c1c1c;
   opacity: 0;
+  transition: opacity 0.6s ease;
 }
-
-/* ===== FADE IN ON LOAD ===== */
 body.loaded { opacity: 1; }
+.fade-out { opacity: 0 !important; transition: opacity 0.4s ease; }
 
-/* ===== PAGE TRANSITION CLASS ===== */
-.fade-out {
-  opacity: 0 !important;
-  transition: opacity 0.4s ease;
-}
-
-/* ===== HERO ===== */
-.hero-section {
-  min-height: 80vh;
-  background: #b8e0d2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 3rem;
+/* ===== HEADER ===== */
+header {
+  padding: 2rem 1.5rem;
   text-align: center;
+  font-family: 'Spectral', serif;
 }
-.hero-section h1 {
-  font-size: 3rem;
-  font-weight: 800;
-  color: #1a1a1a;
-  margin-bottom: 1rem;
+header h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
 }
-.hero-section p {
+header p {
   font-size: 1.1rem;
-  font-weight: 400;
+  color: #555;
+  margin-top: 0.5rem;
 }
 
-/* ===== CONTENT SECTIONS ===== */
-section {
-  padding: 4rem 2rem;
-}
-.section-title {
-  font-size: 2rem;
-  margin-bottom: 2rem;
-  text-align: center;
-}
-
-/* ===== HORIZONTAL NEW CARD SCROLL ===== */
-.news-track {
-  display: flex;
-  gap: 1.5rem;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  padding-bottom: 1rem;
-}
-.news-card {
-  min-width: 260px;
-  background: #fefefe;
-  border-radius: 18px;
-  padding: 1rem;
-  scroll-snap-align: start;
-}
-.news-card:hover {
-  transform: translateY(-6px);
-  transition: transform 0.3s ease;
-}
-
-/* ===== PICK UP GRID ===== */
-.pickup-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.8rem;
-}
-.pickup-item {
-  background: #fff;
-  border-radius: 20px;
-  padding: 1rem;
-  text-align: center;
-  transition: transform 0.3s ease;
-}
-.pickup-item:hover {
-  transform: scale(1.04);
-}
-
-/* ===== NAVIGATION ===== */
+/* ===== NAV ===== */
 nav {
-  padding: 1rem 2rem;
-  background: #fff;
-  position: sticky;
-  top: 0;
-  box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+  margin: 1.5rem auto;
+  text-align: center;
 }
 nav a {
+  margin: 0 1rem;
   text-decoration: none;
-  font-weight: 500;
-  margin-right: 1rem;
-  color: #222;
-  transition: color 0.2s ease;
+  font-weight: 600;
+  color: #333;
 }
-nav a:hover {
-  color: #007acc;
+nav a:hover { text-decoration: underline; }
+
+/* ===== SECTIONS ===== */
+section {
+  padding: 4rem 1.5rem;
+  max-width: 1100px;
+  margin: auto;
+}
+.section-title {
+  font-family: 'Spectral', serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  letter-spacing: 0.3px;
+}
+
+/* ===== IMAGE GRID ===== */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+}
+.placeholder {
+  background: #f2f2f2;
+  height: 0;
+  padding-bottom: 66%;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+}
+.placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* ===== TEXT + FRAMES ===== */
+.frame {
+  border: 3px solid #ececec;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  font-family: 'Spectral', serif;
+  color: #444;
+  font-size: 1.05rem;
+  margin-top: 0.6rem;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  text-align: center;
+  padding: 3rem 1rem;
+  font-size: 0.9rem;
+  color: #666;
 }
 
 </style>
@@ -119,45 +115,63 @@ nav a:hover {
 
 <body>
 
+<!-- NAVIGATION -->
 <nav>
   <a href="index.html">Home</a>
   <a href="artwork.html">Artwork</a>
+  <a href="about.html">About</a>
   <a href="contact.html">Contact</a>
 </nav>
 
-<section class="hero-section">
-  <div>
-    <h1>Art & Personality</h1>
-    <p>A smooth portfolio with elegant page transitions</p>
+<!-- HEADER -->
+<header>
+  <h1>Your Name’s Gallery</h1>
+  <p>A curated space for my artwork & inspirations</p>
+</header>
+
+<!-- FEATURED SECTION -->
+<section>
+  <h2 class="section-title">Featured Works</h2>
+  <div class="grid">
+    <div class="placeholder"><!-- IMAGE 1 --></div>
+    <div class="placeholder"><!-- IMAGE 2 --></div>
+    <div class="placeholder"><!-- IMAGE 3 --></div>
   </div>
 </section>
 
-<section class="news">
-  <h2 class="section-title">What's New</h2>
-  <div class="news-track">
-    <div class="news-card">Update One</div>
-    <div class="news-card">Update Two</div>
-    <div class="news-card">Update Three</div>
+<!-- ARTWORK GRID -->
+<section>
+  <h2 class="section-title">Gallery</h2>
+  <div class="grid">
+    <div class="placeholder"><!-- IMAGE 4 --></div>
+    <div class="placeholder"><!-- IMAGE 5 --></div>
+    <div class="placeholder"><!-- IMAGE 6 --></div>
+    <div class="placeholder"><!-- IMAGE 7 --></div>
   </div>
 </section>
 
-<section class="pickup">
-  <h2 class="section-title">Pick Up</h2>
-  <div class="pickup-grid">
-    <div class="pickup-item">Work 01</div>
-    <div class="pickup-item">Work 02</div>
-    <div class="pickup-item">Work 03</div>
+<!-- ABOUT / TEXT WITH FRAME -->
+<section>
+  <h2 class="section-title">About This Collection</h2>
+  <div class="frame">
+    This is a space where I explore visual storytelling, emotions, and ideas through my artwork. Replace this with your own description later.
   </div>
 </section>
+
+<!-- FOOTER -->
+<footer>
+  © 2025 Your Name · Portfolio
+</footer>
 
 <script>
+// Page load fade-in
 document.addEventListener('DOMContentLoaded', () => {
   document.body.classList.add('loaded');
 });
 
-/* page transitions */
-const links = document.querySelectorAll('nav a');
-links.forEach(link => {
+// Page transitions
+const navLinks = document.querySelectorAll('nav a');
+navLinks.forEach(link => {
   link.addEventListener('click', e => {
     e.preventDefault();
     document.body.classList.add('fade-out');
