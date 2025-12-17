@@ -3,15 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Art & Interests</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <title>Playful Art Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
   <style>
     :root {
-      --bg: #fff8ed;
-      --card: #ffffff;
-      --text: #2b2b2b;
-      --muted: #6f6f6f;
-      --accent: #4fa3ff;
+      --mint: #63d2b3;
+      --cream: #fff6e5;
+      --sky: #bfe6f2;
+      --ink: #1f1f1f;
+      --accent: #ff6f61;
     }
 
     * { box-sizing: border-box; }
@@ -19,210 +20,47 @@
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
-      background: linear-gradient(180deg, #fffdf8, #fff4dd);
-      color: var(--text);
-      line-height: 1.7;
+      background: var(--cream);
+      color: var(--ink);
+      overflow-x: hidden;
     }
 
-    header {
-      padding: 5rem 1.5rem 3rem;
-      text-align: center;
-    }
-
-    header h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 3rem;
-      margin-bottom: 0.5rem;
-      letter-spacing: 0.03em;
-    }
-
-    header p {
-      color: var(--muted);
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    nav {
-      margin-top: 2rem;
-    }
-
-    nav a {
-      color: var(--text);
-      text-decoration: none;
-      margin: 0 0.75rem;
-      font-size: 0.95rem;
-      position: relative;
-    }
-
-    nav a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -4px;
-      width: 0;
-      height: 1px;
-      background: var(--accent);
-      transition: width 0.3s ease;
-    }
-
-    nav a:hover::after { width: 100%; }
-
-    main {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 2rem 1.5rem 4rem;
-    }
-
-    section {
-      margin-bottom: 4rem;
-    }
-
-    h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .about {
-      max-width: 700px;
-      color: var(--muted);
-    }
-
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .art-card {
-      background: #ffffff;
-      border-radius: 20px;
-      padding: 1rem;
-      border: 1px solid #f0e6d8;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .art-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.12);
-    }
-
-    .art-image {
-      width: 100%;
-      height: 200px;
-      border-radius: 16px;
-      background: linear-gradient(135deg, #ffe8c2, #ffd1e8);
+    /* ---------- HERO ---------- */
+    .hero {
+      min-height: 100vh;
+      background: var(--mint);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #8a6f5a;
-      font-size: 0.9rem;
-      margin-bottom: 0.8rem;
+      position: relative;
     }
 
-    .art-card h3 {
-      margin: 0.3rem 0 0.2rem;
-      font-size: 1.05rem;
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      max-width: 1200px;
+      padding: 3rem;
     }
 
-    .art-card p {
-      margin: 0;
-      font-size: 0.85rem;
-      color: var(--muted);
+    .hero-text h1 {
+      font-size: clamp(2.5rem, 4vw, 4rem);
+      line-height: 1.1;
     }
 
-    .interests {
+    .hero-text p {
+      font-size: 1.1rem;
+      margin-top: 1rem;
+      max-width: 420px;
+    }
+
+    .hero-art {
+      background: #fff;
+      border-radius: 28px;
+      padding: 2rem;
       display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-    }
-
-    .tag {
-      padding: 0.4rem 0.9rem;
-      border-radius: 999px;
-      background: rgba(157,123,255,0.15);
-      color: var(--accent);
-      font-size: 0.85rem;
-    }
-
-    footer {
-      text-align: center;
-      padding: 3rem 1.5rem;
-      color: var(--muted);
-      font-size: 0.85rem;
-    }
-
-    footer a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <h1>Your Name</h1>
-    <p>Artist · Creator · Dreamer<br>Exploring visuals, ideas, and stories.</p>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#art">Artwork</a>
-      <a href="#interests">Interests</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
-
-  <main>
-    <section id="about">
-      <h2>About Me</h2>
-      <p class="about">
-        I am a student and artist who loves visual storytelling, design, and creative experiments. 
-        This website is a personal space to archive my artworks and the things that inspire me.
-      </p>
-    </section>
-
-    <section id="art">
-      <h2>Artwork</h2>
-      <div class="gallery">
-        <div class="art-card">
-          <div class="art-image">Artwork Image</div>
-          <h3>Artwork Title</h3>
-          <p>Digital illustration · 2025</p>
-        </div>
-        <div class="art-card">
-          <div class="art-image">Artwork Image</div>
-          <h3>Artwork Title</h3>
-          <p>Mixed media · 2024</p>
-        </div>
-        <div class="art-card">
-          <div class="art-image">Artwork Image</div>
-          <h3>Artwork Title</h3>
-          <p>Sketch / Concept</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="interests">
-      <h2>Interests</h2>
-      <div class="interests">
-        <span class="tag">Illustration</span>
-        <span class="tag">Graphic Design</span>
-        <span class="tag">Photography</span>
-        <span class="tag">Storytelling</span>
-        <span class="tag">Visual Culture</span>
-      </div>
-    </section>
-
-    <section id="contact">
-      <h2>Contact</h2>
-      <p class="about">
-        Email: yourname@email.com<br>
-        Instagram: <a href="#">@yourhandle</a><br>
-        GitHub: <a href="#">github.com/yourusername</a>
-      </p>
-    </section>
-  </main>
-
-  <footer>
-    <p>© 2025 Your Name · Built with GitHub Pages</p>
-  </footer>
-</body>
-</html>
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+      transform: rotate(-2deg);
+      animation: float 6s ease
