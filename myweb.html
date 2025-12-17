@@ -10,71 +10,77 @@
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
-        /* --- 1. VARIABLES & RESET --- */
+        /* --- 1. VARIABLES --- */
         :root {
-            /* Happy Socks Inspired Palette */
             --color-bg: #ffffff;
             --color-text: #000000;
-            --color-primary: #FFD700; /* Vibrant Yellow */
+            --color-primary: #FFD700; /* Cyber Yellow */
             --color-secondary: #FF007F; /* Hot Pink */
-            --color-tertiary: #00FFFF; /* Cyan */
+            --color-tertiary: #00FFFF; /* Electric Cyan */
             --color-accent: #39FF14; /* Neon Green */
             
             --border-thick: 3px solid black;
-            --border-thin: 1px solid black;
             --shadow-hard: 8px 8px 0px 0px rgba(0,0,0,1);
-            --shadow-hover: 4px 4px 0px 0px rgba(0,0,0,1);
-            
-            --trans-speed: 0.6s;
-            --trans-ease: cubic-bezier(0.22, 1, 0.36, 1);
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        /* --- 2. BASE STYLES --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--color-bg);
             color: var(--color-text);
-            overflow-x: hidden;
+            overflow-x: hidden; /* Prevent horizontal scroll */
         }
 
-        /* --- 2. TYPOGRAPHY --- */
         h1, h2, h3 {
             font-family: 'Archivo Black', sans-serif;
             text-transform: uppercase;
-            line-height: 0.9;
+            line-height: 0.95;
+            margin-bottom: 0.5rem;
         }
 
         h1 { font-size: clamp(3rem, 10vw, 8rem); }
-        h2 { font-size: clamp(2rem, 5vw, 4rem); margin-bottom: 2rem;}
-        p { font-size: 1.1rem; line-height: 1.6; max-width: 60ch;}
+        h2 { font-size: clamp(2rem, 5vw, 4rem); margin-bottom: 3rem; }
+        p { font-size: 1.1rem; line-height: 1.6; }
+        a { text-decoration: none; color: inherit; }
 
-        /* --- 3. UTILITIES & ANIMATIONS --- */
         .wrapper {
             max-width: 1400px;
             margin: 0 auto;
             padding: 0 20px;
+            position: relative;
         }
 
-        /* The Transition Logic */
+        /* --- 3. ANIMATIONS (The Fix) --- */
+        
+        /* Immediate Animation for Hero (No JS needed) */
+        @keyframes popUp {
+            0% { opacity: 0; transform: translateY(40px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        .hero-animate {
+            animation: popUp 0.8s cubic-bezier(0.2, 1, 0.3, 1) forwards;
+        }
+
+        /* Scroll Reveal for other items */
         .reveal {
             opacity: 0;
-            transform: translateY(80px) scale(0.95);
-            transition: all var(--trans-speed) var(--trans-ease);
+            transform: translateY(60px);
+            transition: opacity 0.6s ease-out, transform 0.6s cubic-bezier(0.2, 1, 0.3, 1);
         }
-
+        
         .reveal.active {
             opacity: 1;
-            transform: translateY(0) scale(1);
+            transform: translateY(0);
         }
 
-        /* --- 4. NAVIGATION --- */
+        /* --- 4. LAYOUT COMPONENTS --- */
+
+        /* Navigation */
         nav {
-            padding: 2rem 0;
+            padding: 1.5rem 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -82,7 +88,7 @@
             background: var(--color-bg);
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 1000; /* Ensures nav is always on top */
         }
 
         .logo {
@@ -90,24 +96,20 @@
             font-size: 1.5rem;
             background: var(--color-text);
             color: var(--color-bg);
-            padding: 5px 10px;
-            transform: rotate(-2deg);
+            padding: 5px 12px;
+            transform: rotate(-3deg);
+            display: inline-block;
         }
 
         .nav-links a {
-            text-decoration: none;
-            color: var(--color-text);
             font-weight: 700;
             margin-left: 2rem;
             text-transform: uppercase;
-            position: relative;
+            font-size: 0.9rem;
         }
+        .nav-links a:hover { color: var(--color-secondary); }
 
-        .nav-links a:hover {
-            color: var(--color-secondary);
-        }
-
-        /* --- 5. HERO SECTION --- */
+        /* Hero */
         .hero {
             min-height: 80vh;
             display: flex;
@@ -115,24 +117,14 @@
             justify-content: center;
             background-color: var(--color-primary);
             border-bottom: var(--border-thick);
-            text-align: center;
             position: relative;
             overflow: hidden;
+            padding: 4rem 0;
         }
-
-        /* Decorative circles */
-        .deco-circle {
-            position: absolute;
-            border-radius: 50%;
-            border: var(--border-thick);
-            z-index: 0;
-        }
-        .c1 { width: 300px; height: 300px; background: var(--color-secondary); top: -50px; left: -50px; }
-        .c2 { width: 150px; height: 150px; background: var(--color-tertiary); bottom: 50px; right: 10%; }
 
         .hero-content {
-            z-index: 1;
-            position: relative;
+            z-index: 10; /* Ensures text is above decoration */
+            text-align: center;
         }
 
         .hero h1 span {
@@ -140,12 +132,191 @@
             -webkit-text-stroke: 2px black;
             color: transparent;
         }
-        
         .hero h1 span:first-child {
             color: black;
             -webkit-text-stroke: 0;
         }
 
-        /* --- 6. GALLERY / WORK --- */
-        .work-section {
-            padding: 5rem 0
+        /* Decoration Circles */
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            border: var(--border-thick);
+            pointer-events: none;
+        }
+        .c1 { width: 250px; height: 250px; background: var(--color-secondary); top: -40px; left: -40px; }
+        .c2 { width: 120px; height: 120px; background: var(--color-tertiary); bottom: 40px; right: 8%; }
+
+        /* Work Grid */
+        .work-section { padding: 5rem 0; }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .card {
+            border: var(--border-thick);
+            background: white;
+            box-shadow: var(--shadow-hard);
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+        
+        .card:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 12px 12px 0px 0px var(--color-secondary);
+        }
+
+        /* Placeholders */
+        .frame {
+            height: 280px;
+            width: 100%;
+            border-bottom: var(--border-thick);
+            background: #eee;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* CSS Patterns */
+        .pat-dot {
+            background-image: radial-gradient(black 15%, transparent 16%);
+            background-size: 20px 20px;
+            background-color: var(--color-tertiary);
+        }
+        .pat-stripe {
+            background: repeating-linear-gradient(45deg, var(--color-secondary), var(--color-secondary) 10px, white 10px, white 20px);
+        }
+        .pat-solid {
+            background: var(--color-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .card-info { padding: 1.5rem; }
+        .tags { margin-top: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .tag { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; padding: 4px 8px; border: 2px solid black; }
+
+        /* Footer */
+        footer {
+            background: black;
+            color: white;
+            padding: 4rem 20px;
+            text-align: center;
+        }
+        .email-link {
+            display: block;
+            font-size: clamp(1.5rem, 5vw, 3rem);
+            font-family: 'Archivo Black';
+            color: var(--color-primary);
+            margin: 2rem 0;
+        }
+        .email-link:hover { color: var(--color-tertiary); }
+
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <nav>
+            <div class="logo">PORTFOLIO</div>
+            <div class="nav-links">
+                <a href="#work">Work</a>
+                <a href="#about">About</a>
+            </div>
+        </nav>
+    </div>
+
+    <header class="hero">
+        <div class="circle c1"></div>
+        <div class="circle c2"></div>
+        
+        <div class="hero-content wrapper hero-animate">
+            <h1>
+                Hello. I make <br>
+                <span>NOISE.</span>
+            </h1>
+            <p style="margin-top: 20px; font-weight: bold; background: white; display: inline-block; padding: 5px 10px; border: 3px solid black;">
+                Scroll down to see work ↓
+            </p>
+        </div>
+    </header>
+
+    <section id="work" class="work-section wrapper">
+        <h2 class="reveal">Selected Work</h2>
+        
+        <div class="grid">
+            
+            <div class="card reveal">
+                <div class="frame pat-dot"></div>
+                <div class="card-info">
+                    <h3>Happy Socks Rebrand</h3>
+                    <p>Exploration of patterns.</p>
+                    <div class="tags"><span class="tag">Branding</span></div>
+                </div>
+            </div>
+
+            <div class="card reveal">
+                <div class="frame pat-stripe"></div>
+                <div class="card-info">
+                    <h3>Neon Retail</h3>
+                    <p>High contrast packaging.</p>
+                    <div class="tags"><span class="tag">Packaging</span></div>
+                </div>
+            </div>
+
+            <div class="card reveal">
+                <div class="frame pat-solid">✦</div>
+                <div class="card-info">
+                    <h3>Pop Art</h3>
+                    <p>Geometric primitives.</p>
+                    <div class="tags"><span class="tag">Art</span></div>
+                </div>
+            </div>
+
+            <div class="card reveal">
+                <div class="frame pat-stripe" style="filter: hue-rotate(90deg);"></div>
+                <div class="card-info">
+                    <h3>The Yellow Room</h3>
+                    <p>Interior concept.</p>
+                    <div class="tags"><span class="tag">3D</span></div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer id="about">
+        <div class="reveal">
+            <h2>Let's Talk</h2>
+            <a href="mailto:hello@example.com" class="email-link">hello@example.com</a>
+            <p>© 2024 Portfolio. Designed with bold intent.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Options: Threshold 0 means "trigger as soon as 1 pixel is visible"
+            const observerOptions = {
+                root: null,
+                threshold: 0, 
+                rootMargin: "0px 0px -50px 0px" 
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, observerOptions);
+
+            const elements = document.querySelectorAll('.reveal');
+            elements.forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>
