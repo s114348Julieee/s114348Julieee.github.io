@@ -1,1 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fanart Collection</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;700&display=swap" rel="stylesheet">
 
+    <style>
+        /* --- 1. REUSED VARIABLES & BASE STYLES --- */
+        :root {
+            --color-bg: #FAF7F7;
+            --color-text: #000000;
+            --color-primary: #B6FF75; 
+            --color-secondary: #FAAAC4; /* Using Pink for Fanart Header */
+            --color-tertiary: #00FFFF; 
+            --border-thick: 3px solid black;
+            --shadow-hard: 8px 8px 0px 0px rgba(0,0,0,1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 { font-family: 'Archivo Black', sans-serif; text-transform: uppercase; }
+        a { text-decoration: none; color: inherit; }
+
+        .wrapper { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
+
+        /* --- 2. NAVIGATION --- */
+        nav {
+            padding: 1.5rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: var(--border-thick);
+            background: var(--color-bg);
+            position: sticky; top: 0; z-index: 1000;
+        }
+
+        .logo {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 1.5rem;
+            background: var(--color-text);
+            color: var(--color-bg);
+            padding: 5px 12px;
+            transform: rotate(-3deg);
+            display: inline-block;
+        }
+
+        .back-btn {
+            font-weight: 800;
+            text-transform: uppercase;
+            border: 2px solid black;
+            padding: 8px 16px;
+            background: white;
+            box-shadow: 4px 4px 0 0 black;
+            transition: 0.2s;
+        }
+        .back-btn:hover { box-shadow: 2px 2px 0 0 black; transform: translate(2px, 2px); background: var(--color-tertiary); }
+
+        /* --- 3. HERO (Smaller than Homepage) --- */
+        .page-header {
+            background-color: var(--color-secondary); /* Pink background for distinction */
+            border-bottom: var(--border-thick);
+            padding: 3rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header h1 {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            color: white;
+            -webkit-text-stroke: 2px black;
+            text-shadow: 4px 4px 0px black;
+            z-index: 2; position: relative;
+        }
+
+        /* --- 4. GALLERY GRID --- */
+        .gallery-section { padding: 4rem 0; }
+        
+        .gallery-grid {
+            display: grid;
+            /* Creates a responsive grid of squares */
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            border: var(--border-thick);
+            background: white;
+            box-shadow: var(--shadow-hard);
+            transition: transform 0.2s;
+            cursor: pointer;
+            position: relative;
+            aspect-ratio: 1 / 1; /* Forces perfect squares */
+            overflow: hidden;
+        }
+
+        .gallery-item:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 12px 12px 0px 0px var(--color-tertiary);
+            z-index: 10;
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Crops nicely to square */
+            transition: transform 0.3s;
+        }
+        
+        /* Slight zoom effect on hover */
+        .gallery-item:hover .gallery-img { transform: scale(1.05); }
+
+        /* Hover Caption Overlay */
+        .caption {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            background: black;
+            color: white;
+            padding: 10px;
+            font-family: 'Archivo Black';
+            font-size: 0.8rem;
+            transform: translateY(100%);
+            transition: transform 0.2s;
+            text-align: center;
+        }
+        .gallery-item:hover .caption { transform: translateY(0); }
+
+        /* --- 5. ANIMATIONS --- */
+        @keyframes popUp {
+            0% { opacity: 0; transform: translateY(40px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .animate-pop { animation: popUp 0.8s cubic-bezier(0.2, 1, 0.3, 1) forwards; }
+
+        .reveal {
+            opacity: 0; transform: translateY(40px);
+            transition: opacity 0.6s ease-out, transform 0.6s cubic-bezier(0.2, 1, 0.3, 1);
+        }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* --- 6. LIGHTBOX --- */
+        #lightbox {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9); z-index: 2000; cursor: zoom-out;
+            align-items: center; justify-content: center; flex-direction: column;
+        }
+        #lightbox-img {
+            max-width: 90%; max-height: 85%;
+            border: var(--border-thick);
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            background: white;
+        }
+        #lightbox-text { color: var(--color-primary); margin-top: 15px; font-family: 'Archivo Black'; font-size: 1.2rem; }
+
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <nav>
+            <a href="index.html" class="logo">PORTFOLIO</a>
+            <a href="index.html" class="back-btn">← Back Home</a>
+        </nav>
+    </div>
+
+    <header class="page-header">
+        <div class="wrapper animate-pop">
+            <h1>Fanart Collection</h1>
+            <p style="font-weight:bold; margin-top:10px;">Sketches, doodles, and hobbies.</p>
+        </div>
+    </header>
+
+    <section class="gallery-section wrapper">
+        <div class="gallery-grid">
+
+            <div class="gallery-item reveal">
+                <img src="https://placehold.co/600x600/png" alt="Character Name 1" class="gallery-img">
+                <div class="caption">Character Name 01</div>
+            </div>
+
+            <div class="gallery-item reveal">
+                <img src="https://placehold.co/600x800/png" alt="Character Name 2" class="gallery-img">
+                <div class="caption">Character Name 02</div>
+            </div>
+
+            <div class="gallery-item reveal">
+                <img src="https://placehold.co/800x600/png" alt="Character Name 3" class="gallery-img">
+                <div class="caption">Character Name 03</div>
+            </div>
+
+            <div class="gallery-item reveal">
+                <img src="https://placehold.co/600x600/png" alt="Character Name 4" class="gallery-img">
+                <div class="caption">Character Name 04</div>
+            </div>
+
+            <div class="gallery-item reveal">
+                <img src="https://placehold.co/600x600/png" alt="Character Name 5" class="gallery-img">
+                <div class="caption">Character Name 05</div>
+            </div>
+
+             <div class="gallery-item reveal">
+                <img src="https://placehold.co/600x600/png" alt="Character Name 6" class="gallery-img">
+                <div class="caption">Character Name 06</div>
+            </div>
+
+        </div>
+    </section>
+
+    <div id="lightbox">
+        <img id="lightbox-img" src="">
+        <div id="lightbox-text"></div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Scroll Reveal Animation
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add('active');
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+            // Lightbox Logic
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxText = document.getElementById('lightbox-text');
+
+            document.querySelectorAll('.gallery-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    const img = item.querySelector('img');
+                    const caption = item.querySelector('.caption');
+                    
+                    if (img) {
+                        lightboxImg.src = img.src;
+                        lightboxText.innerText = caption ? caption.innerText : '';
+                        lightbox.style.display = 'flex';
+                    }
+                });
+            });
+
+            lightbox.addEventListener('click', () => {
+                lightbox.style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>
