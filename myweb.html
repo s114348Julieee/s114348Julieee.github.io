@@ -179,6 +179,13 @@
             overflow: hidden;
         }
 
+        .portfolio-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* This crops the image to fill the space perfectly */
+            display: block;
+        }
+
         /* CSS Patterns */
         .pat-dot {
             background-image: radial-gradient(black 15%, transparent 16%);
@@ -260,7 +267,9 @@
             </div>
 
             <div class="card reveal">
-                <div class="frame pat-stripe"></div>
+                <div class="frame">
+                    <img src="FC988838-4363-4D55-8FDC-33BD46CDF945.jpeg" alt="dandadan" class"portfolio-img">
+                </div>
                 <div class="card-info">
                     <h3>Fanart</h3>
                     <p>hobby dump.</p>
@@ -280,7 +289,9 @@
             </div>
 
             <div class="card reveal">
-                <div class="frame pat-stripe" style="filter: hue-rotate(90deg);"></div>
+                  <div class="frame">
+                    <img src="IMG_0879.jpeg" alt="yuuri" class"portfolio-img">
+                </div>
                 <div class="card-info">
                     <h3>Drafts</h3>
                     <p>rkgk and unfinished work.</p>
