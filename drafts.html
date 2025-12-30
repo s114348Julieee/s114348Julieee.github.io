@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drafts & Sketches</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- CORE VARIABLES --- */
+        :root {
+            --color-bg: #FAF7F7;
+            --color-text: #000000;
+            --color-primary: #B6FF75; 
+            --color-secondary: #FAAAC4; 
+            --color-tertiary: #5CBD93; 
+            --color-accent: #39FF14; /* NEON GREEN */
+            --border-thick: 3px solid black;
+            --shadow-hard: 8px 8px 0px 0px rgba(0,0,0,1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Archivo Black', sans-serif;
+            text-transform: uppercase;
+            line-height: 0.95;
+            margin-bottom: 0.5rem;
+        }
+
+        h1 { font-size: clamp(3rem, 8vw, 6rem); }
+        p { font-size: 1.1rem; line-height: 1.6; }
+        a { text-decoration: none; color: inherit; }
+
+        .wrapper { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
+
+        /* --- NAV --- */
+        nav {
+            padding: 1.5rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: var(--border-thick);
+            background: var(--color-bg);
+            position: sticky; top: 0; z-index: 1000;
+        }
+
+        .logo {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 1.5rem;
+            background: var(--color-text);
+            color: var(--color-bg);
+            padding: 5px 12px;
+            transform: rotate(-3deg);
+            display: inline-block;
+        }
+
+        .nav-links a { font-weight: 700; margin-left: 2rem; text-transform: uppercase; font-size: 0.9rem; }
+        .nav-links a:hover { color: var(--color-accent); }
+
+        /* --- HEADER (NEON GREEN) --- */
+        .page-header {
+            background-color: var(--color-accent); /* <--- NEON GREEN */
+            padding: 4rem 0;
+            border-bottom: var(--border-thick);
+            text-align: center;
+        }
+
+        .back-btn {
+            display: inline-block;
+            font-weight: bold;
+            border: 3px solid black;
+            padding: 10px 20px;
+            background: white;
+            box-shadow: 4px 4px 0 0 black;
+            margin-bottom: 20px;
+            transition: 0.2s;
+        }
+        .back-btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 0 black; }
+
+        /* --- GALLERY --- */
+        .gallery-section { padding: 4rem 0; }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Smaller cards for sketches */
+            gap: 2rem;
+        }
+
+        .art-piece {
+            border: var(--border-thick);
+            background: white;
+            box-shadow: var(--shadow-hard);
+            transition: transform 0.2s;
+        }
+
+        .art-piece:hover {
+            transform: translateY(-5px);
+            box-shadow: 12px 12px 0px 0px black; /* Black shadow for sketchy feel */
+        }
+
+        .art-frame {
+            width: 100%;
+            height: 300px; /* Fixed height */
+            border-bottom: var(--border-thick);
+            /* A subtle graph paper pattern background for drafts */
+            background-color: #f0f0f0;
+            background-image: linear-gradient(#e0e0e0 1px, transparent 1px), linear-gradient(90deg, #e0e0e0 1px, transparent 1px);
+            background-size: 20px 20px;
+            overflow: hidden;
+            display: flex; /* Centers the image */
+            align-items: center;
+            justify-content: center;
+        }
+
+        .art-img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain; /* SHOWS WHOLE IMAGE WITHOUT CROPPING */
+            display: block;
+        }
+        
+        .art-info { padding: 1rem; }
+        .date { font-size: 0.8rem; opacity: 0.6; font-weight: bold; }
+
+        footer { background: black; color: white; padding: 3rem 20px; text-align: center; margin-top: 4rem; }
+
+        /* --- ANIMATION --- */
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.6s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <nav>
+            <a href="index.html" class="logo">PORTFOLIO</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#about">Contact</a>
+            </div>
+        </nav>
+    </div>
+
+    <header class="page-header">
+        <div class="wrapper reveal">
+            <a href="index.html" class="back-btn">← Back to Home</a>
+            <h1>Drafts<br>& RKGK</h1>
+            <p>Unfinished business, studies, and scribbles.</p>
+        </div>
+    </header>
+
+    <section class="gallery-section wrapper">
+        <div class="gallery-grid">
+
+            <div class="art-piece reveal">
+                <div class="art-frame">
+                    <img src="IMG_0881.png" alt="Sketch" class="art-img">
+                </div>
+                <div class="art-info">
+                    <h3>Anatomy Study</h3>
+                    <p class="date">Oct 2024</p>
+                </div>
+            </div>
+
+            <div class="art-piece reveal">
+                <div class="art-frame">
+                    <img src="https://via.placeholder.com/300x500" alt="Sketch" class="art-img">
+                </div>
+                <div class="art-info">
+                    <h3>Character Idea</h3>
+                    <p class="date">Sept 2024</p>
+                </div>
+            </div>
+
+             <div class="art-piece reveal">
+                <div class="art-frame">
+                    <img src="https://via.placeholder.com/400x300" alt="Sketch" class="art-img">
+                </div>
+                <div class="art-info">
+                    <h3>Hand poses</h3>
+                    <p class="date">Aug 2024</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="reveal">
+            <h2>WIP</h2>
+            <p>© 2024 Portfolio.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add('active');
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>
