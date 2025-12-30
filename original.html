@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Original Works</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- CORE VARIABLES --- */
+        :root {
+            --color-bg: #FAF7F7;
+            --color-text: #000000;
+            --color-primary: #B6FF75; 
+            --color-secondary: #FAAAC4; 
+            --color-tertiary: #5CBD93; /* TURQUOISE */
+            --color-accent: #39FF14; 
+            --border-thick: 3px solid black;
+            --shadow-hard: 8px 8px 0px 0px rgba(0,0,0,1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Archivo Black', sans-serif;
+            text-transform: uppercase;
+            line-height: 0.95;
+            margin-bottom: 0.5rem;
+        }
+
+        h1 { font-size: clamp(3rem, 8vw, 6rem); }
+        p { font-size: 1.1rem; line-height: 1.6; }
+        a { text-decoration: none; color: inherit; }
+
+        .wrapper { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
+
+        /* --- NAV --- */
+        nav {
+            padding: 1.5rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: var(--border-thick);
+            background: var(--color-bg);
+            position: sticky; top: 0; z-index: 1000;
+        }
+
+        .logo {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 1.5rem;
+            background: var(--color-text);
+            color: var(--color-bg);
+            padding: 5px 12px;
+            transform: rotate(-3deg);
+            display: inline-block;
+        }
+
+        .nav-links a { font-weight: 700; margin-left: 2rem; text-transform: uppercase; font-size: 0.9rem; }
+        .nav-links a:hover { color: var(--color-tertiary); }
+
+        /* --- HEADER (TURQUOISE) --- */
+        .page-header {
+            background-color: var(--color-tertiary); /* <--- THIS IS THE TURQUOISE */
+            padding: 4rem 0;
+            border-bottom: var(--border-thick);
+            text-align: center;
+        }
+
+        .back-btn {
+            display: inline-block;
+            font-weight: bold;
+            border: 3px solid black;
+            padding: 10px 20px;
+            background: white;
+            box-shadow: 4px 4px 0 0 black;
+            margin-bottom: 20px;
+            transition: 0.2s;
+        }
+        .back-btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 0 black; }
+
+        /* --- GALLERY --- */
+        .gallery-section { padding: 4rem 0; }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .art-piece {
+            border: var(--border-thick);
+            background: white;
+            box-shadow: var(--shadow-hard);
+            transition: transform 0.2s;
+        }
+
+        .art-piece:hover {
+            transform: translateY(-5px);
+            box-shadow: 12px 12px 0px 0px var(--color-secondary); /* Pink shadow on hover */
+        }
+
+        .art-frame {
+            width: 100%;
+            aspect-ratio: 1 / 1; 
+            border-bottom: var(--border-thick);
+            background: #eee;
+            overflow: hidden;
+        }
+
+        .art-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        
+        .art-piece:hover .art-img { transform: scale(1.05); }
+
+        .art-info { padding: 1rem; }
+        
+        /* Tags for Original Characters */
+        .oc-tag { 
+            font-size: 0.7rem; font-weight: 800; text-transform: uppercase; 
+            padding: 4px 8px; border: 2px solid black; display: inline-block; margin-top: 5px;
+            background: var(--color-primary);
+        }
+
+        footer { background: black; color: white; padding: 3rem 20px; text-align: center; margin-top: 4rem; }
+
+        /* --- ANIMATION --- */
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.6s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <nav>
+            <a href="index.html" class="logo">PORTFOLIO</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#about">Contact</a>
+            </div>
+        </nav>
+    </div>
+
+    <header class="page-header">
+        <div class="wrapper reveal">
+            <a href="index.html" class="back-btn">← Back to Home</a>
+            <h1>Original<br>Works</h1>
+            <p>Character design, illustrations, and stories.</p>
+        </div>
+    </header>
+
+    <section class="gallery-section wrapper">
+        <div class="gallery-grid">
+
+            <div class="art-piece reveal">
+                <div class="art-frame">
+                    <img src="F2C1D7C5-4CD2-4B2B-9090-96860D29D3D3.jpeg" alt="OC Art" class="art-img">
+                </div>
+                <div class="art-info">
+                    <h3>Miuusa</h3>
+                    <p>Character Sheet Design.</p>
+                    <span class="oc-tag">Concept</span>
+                </div>
+            </div>
+
+            <div class="art-piece reveal">
+                <div class="art-frame">
+                    <img src="https://via.placeholder.com/600" alt="OC Art" class="art-img">
+                </div>
+                <div class="art-info">
+                    <h3>Project Zero</h3>
+                    <p>Key visual for webcomic.</p>
+                    <span class="oc-tag">Illustration</span>
+                </div>
+            </div>
+            
+            <div class="art-piece reveal">
+                <div class="art-frame">
+                    <img src="https://via.placeholder.com/600" alt="OC Art" class="art-img">
+                </div>
+                <div class="art-info">
+                    <h3>Environment</h3>
+                    <p>Background painting study.</p>
+                    <span class="oc-tag">BG Art</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="reveal">
+            <h2>Let's Create</h2>
+            <p>© 2024 Portfolio.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add('active');
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>
