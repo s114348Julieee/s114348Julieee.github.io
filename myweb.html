@@ -1,337 +1,337 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Creative Portfolio</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Creative Portfolio</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;700&display=swap" rel="stylesheet">
 
-    <style>
-        /* --- 1. VARIABLES --- */
-        :root {
-            --color-bg: #FAF7F7;
-            --color-text: #000000;
-            --color-primary: #B6FF75; /* Bright Green */
-            --color-secondary: #FAAAC4; /* Hot Pink */
-            --color-tertiary: #5CBD93; /* turquoise */
-            --color-accent: #39FF14; /* Neon Green */
-            
-            --border-thick: 3px solid black;
-            --shadow-hard: 8px 8px 0px 0px rgba(0,0,0,1);
-        }
+    <style>
+        /* --- 1. VARIABLES --- */
+        :root {
+            --color-bg: #FAF7F7;
+            --color-text: #000000;
+            --color-primary: #B6FF75; /* Bright Green */
+            --color-secondary: #FAAAC4; /* Hot Pink */
+            --color-tertiary: #5CBD93; /* turquoise */
+            --color-accent: #39FF14; /* Neon Green */
+            
+            --border-thick: 3px solid black;
+            --shadow-hard: 8px 8px 0px 0px rgba(0,0,0,1);
+        }
 
-        /* --- 2. BASE STYLES --- */
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        /* --- 2. BASE STYLES --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--color-bg);
-            color: var(--color-text);
-            overflow-x: hidden; /* Prevent horizontal scroll */
-        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
 
-        h1, h2, h3 {
-            font-family: 'Archivo Black', sans-serif;
-            text-transform: uppercase;
-            line-height: 0.95;
-            margin-bottom: 0.5rem;
-        }
+        h1, h2, h3 {
+            font-family: 'Archivo Black', sans-serif;
+            text-transform: uppercase;
+            line-height: 0.95;
+            margin-bottom: 0.5rem;
+        }
 
-        h1 { font-size: clamp(3rem, 10vw, 8rem); }
-        h2 { font-size: clamp(2rem, 5vw, 4rem); margin-bottom: 3rem; }
-        p { font-size: 1.1rem; line-height: 1.6; }
-        a { text-decoration: none; color: inherit; }
+        h1 { font-size: clamp(3rem, 10vw, 8rem); }
+        h2 { font-size: clamp(2rem, 5vw, 4rem); margin-bottom: 3rem; }
+        p { font-size: 1.1rem; line-height: 1.6; }
+        a { text-decoration: none; color: inherit; }
 
-        .wrapper {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
-            position: relative;
-        }
+        .wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+        }
 
-        /* --- 3. ANIMATIONS (The Fix) --- */
-        
-        /* Immediate Animation for Hero (No JS needed) */
-        @keyframes popUp {
-            0% { opacity: 0; transform: translateY(40px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-        
-        .hero-animate {
-            animation: popUp 0.8s cubic-bezier(0.2, 1, 0.3, 1) forwards;
-        }
+        /* --- 3. ANIMATIONS (The Fix) --- */
+        
+        /* Immediate Animation for Hero (No JS needed) */
+        @keyframes popUp {
+            0% { opacity: 0; transform: translateY(40px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        .hero-animate {
+            animation: popUp 0.8s cubic-bezier(0.2, 1, 0.3, 1) forwards;
+        }
 
-        /* Scroll Reveal for other items */
-        .reveal {
-            opacity: 0;
-            transform: translateY(60px);
-            transition: opacity 0.6s ease-out, transform 0.6s cubic-bezier(0.2, 1, 0.3, 1);
-        }
-        
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        /* Scroll Reveal for other items */
+        .reveal {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: opacity 0.6s ease-out, transform 0.6s cubic-bezier(0.2, 1, 0.3, 1);
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-        /* --- 4. LAYOUT COMPONENTS --- */
+        /* --- 4. LAYOUT COMPONENTS --- */
 
-        /* Navigation */
-        nav {
-            padding: 1.5rem 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: var(--border-thick);
-            background: var(--color-bg);
-            position: sticky;
-            top: 0;
-            z-index: 1000; /* Ensures nav is always on top */
-        }
+        /* Navigation */
+        nav {
+            padding: 1.5rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: var(--border-thick);
+            background: var(--color-bg);
+            position: sticky;
+            top: 0;
+            z-index: 1000; /* Ensures nav is always on top */
+        }
 
-        .logo {
-            font-family: 'Archivo Black', sans-serif;
-            font-size: 1.5rem;
-            background: var(--color-text);
-            color: var(--color-bg);
-            padding: 5px 12px;
-            transform: rotate(-3deg);
-            display: inline-block;
-        }
+        .logo {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 1.5rem;
+            background: var(--color-text);
+            color: var(--color-bg);
+            padding: 5px 12px;
+            transform: rotate(-3deg);
+            display: inline-block;
+        }
 
-        .nav-links a {
-            font-weight: 700;
-            margin-left: 2rem;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-        }
-        .nav-links a:hover { color: var(--color-secondary); }
+        .nav-links a {
+            font-weight: 700;
+            margin-left: 2rem;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+        .nav-links a:hover { color: var(--color-secondary); }
 
-        /* Hero */
-        .hero {
-            min-height: 80vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: var(--color-primary);
-            border-bottom: var(--border-thick);
-            position: relative;
-            overflow: hidden;
-            padding: 4rem 0;
-        }
+        /* Hero */
+        .hero {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--color-primary);
+            border-bottom: var(--border-thick);
+            position: relative;
+            overflow: hidden;
+            padding: 4rem 0;
+        }
 
-        .hero-content {
-            z-index: 10; /* Ensures text is above decoration */
-            text-align: center;
-        }
+        .hero-content {
+            z-index: 10; /* Ensures text is above decoration */
+            text-align: center;
+        }
 
-        .hero h1 span {
-            display: block;
-            -webkit-text-stroke: 2px black;
-            color: transparent;
-        }
-        .hero h1 span:first-child {
-            color: black;
-            -webkit-text-stroke: 0;
-        }
+        .hero h1 span {
+            display: block;
+            -webkit-text-stroke: 2px black;
+            color: transparent;
+        }
+        .hero h1 span:first-child {
+            color: black;
+            -webkit-text-stroke: 0;
+        }
 
-        /* Decoration Circles */
-        .circle {
-            position: absolute;
-            border-radius: 50%;
-            border: var(--border-thick);
-            pointer-events: none;
-        }
-        .c1 { width: 250px; height: 250px; background: var(--color-secondary); top: -40px; left: -40px; }
-        .c2 { width: 120px; height: 120px; background: var(--color-tertiary); bottom: 40px; right: 8%; }
+        /* Decoration Circles */
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            border: var(--border-thick);
+            pointer-events: none;
+        }
+        .c1 { width: 250px; height: 250px; background: var(--color-secondary); top: -40px; left: -40px; }
+        .c2 { width: 120px; height: 120px; background: var(--color-tertiary); bottom: 40px; right: 8%; }
 
-        /* Work Grid */
-        .work-section { padding: 5rem 0; }
+        /* Work Grid */
+        .work-section { padding: 5rem 0; }
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
 
-        .card {
-            border: var(--border-thick);
-            background: white;
-            box-shadow: var(--shadow-hard);
-            transition: transform 0.2s;
-            cursor: pointer;
-        }
-        
-        .card:hover {
-            transform: translate(-4px, -4px);
-            box-shadow: 12px 12px 0px 0px var(--color-secondary);
-        }
+        .card {
+            border: var(--border-thick);
+            background: white;
+            box-shadow: var(--shadow-hard);
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+        
+        .card:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 12px 12px 0px 0px var(--color-secondary);
+        }
 
-        /* Placeholders */
-        .frame {
-            height: 280px;
-            width: 100%;
-            border-bottom: var(--border-thick);
-            background: #eee;
-            position: relative;
-            overflow: hidden;
-        }
+        /* Placeholders */
+        .frame {
+            height: 280px;
+            width: 100%;
+            border-bottom: var(--border-thick);
+            background: #eee;
+            position: relative;
+            overflow: hidden;
+        }
 
-        .portfolio-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* This crops the image to fill the space perfectly */
-            display: block;
-        }
+        .portfolio-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* This crops the image to fill the space perfectly */
+            display: block;
+        }
 
-        /* CSS Patterns */
-        .pat-dot {
-            background-image: radial-gradient(black 15%, transparent 16%);
-            background-size: 20px 20px;
-            background-color: var(--color-tertiary);
-        }
-        .pat-stripe {
-            background: repeating-linear-gradient(45deg, var(--color-secondary), var(--color-secondary) 10px, white 10px, white 20px);
-        }
-        .pat-solid {
-            background: var(--color-accent);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-        }
+        /* CSS Patterns */
+        .pat-dot {
+            background-image: radial-gradient(black 15%, transparent 16%);
+            background-size: 20px 20px;
+            background-color: var(--color-tertiary);
+        }
+        .pat-stripe {
+            background: repeating-linear-gradient(45deg, var(--color-secondary), var(--color-secondary) 10px, white 10px, white 20px);
+        }
+        .pat-solid {
+            background: var(--color-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
 
-        .card-info { padding: 1.5rem; }
-        .tags { margin-top: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap; }
-        .tag { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; padding: 4px 8px; border: 2px solid black; }
+        .card-info { padding: 1.5rem; }
+        .tags { margin-top: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .tag { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; padding: 4px 8px; border: 2px solid black; }
 
-        /* Footer */
-        footer {
-            background: black;
-            color: white;
-            padding: 4rem 20px;
-            text-align: center;
-        }
-        .email-link {
-            display: block;
-            font-size: clamp(1.5rem, 5vw, 3rem);
-            font-family: 'Archivo Black';
-            color: var(--color-primary);
-            margin: 2rem 0;
-        }
-        .email-link:hover { color: var(--color-tertiary); }
+        /* Footer */
+        footer {
+            background: black;
+            color: white;
+            padding: 4rem 20px;
+            text-align: center;
+        }
+        .email-link {
+            display: block;
+            font-size: clamp(1.5rem, 5vw, 3rem);
+            font-family: 'Archivo Black';
+            color: var(--color-primary);
+            margin: 2rem 0;
+        }
+        .email-link:hover { color: var(--color-tertiary); }
 
-    </style>
+    </style>
 </head>
 <body>
 
-    <div class="wrapper">
-        <nav>
-            <div class="logo">PORTFOLIO</div>
-            <div class="nav-links">
-                <a href="#work">Work</a>
-                <a href="#about">About</a>
-            </div>
-        </nav>
-    </div>
+    <div class="wrapper">
+        <nav>
+            <div class="logo">PORTFOLIO</div>
+            <div class="nav-links">
+                <a href="#work">Work</a>
+                <a href="#about">About</a>
+            </div>
+        </nav>
+    </div>
 
-    <header class="hero">
-        <div class="circle c1"></div>
-        <div class="circle c2"></div>
-        
-        <div class="hero-content wrapper hero-animate">
-            <h1>
-                Hello. I make <br>
-                <span>ART i guess.</span>
-            </h1>
-            <p style="margin-top: 20px; font-weight: bold; background: white; display: inline-block; padding: 5px 10px; border: 3px solid black;">
-                Scroll down to see work ↓
-            </p>
-        </div>
-    </header>
+    <header class="hero">
+        <div class="circle c1"></div>
+        <div class="circle c2"></div>
+        
+        <div class="hero-content wrapper hero-animate">
+            <h1>
+                Hello. I make <br>
+                <span>ART i guess.</span>
+            </h1>
+            <p style="margin-top: 20px; font-weight: bold; background: white; display: inline-block; padding: 5px 10px; border: 3px solid black;">
+                Scroll down to see work ↓
+            </p>
+        </div>
+    </header>
 
-    <section id="work" class="work-section wrapper">
-        <h2 class="reveal">Selected Work</h2>
-        
-        <div class="grid">
-            
-            <div class="card reveal">
-                <div class="frame">
-                    <img src="IMG_0542.jpeg" alt="yearbook" class="portfolio-img">
-                </div>
-                <div class="card-info">
-                    <h3>For School</h3>
-                    <p>stuff for school.</p>
-                    <div class="tags"><span class="tag">Branding</span></div>
-                </div>
-            </div>
+    <section id="work" class="work-section wrapper">
+        <h2 class="reveal">Selected Work</h2>
+        
+        <div class="grid">
+            
+            <div class="card reveal">
+                <div class="frame">
+                    <img src="IMG_0542.jpeg" alt="yearbook" class="portfolio-img">
+                </div>
+                <div class="card-info">
+                    <h3>For School</h3>
+                    <p>stuff for school.</p>
+                    <div class="tags"><span class="tag">Branding</span></div>
+                </div>
+            </div>
 
-            <a href="fanart.html" class="card reveal">
-                <div class="frame">
-                    <img src="IMG_0880.png" alt="dandadan" class="portfolio-img">
-                </div>
-                <div class="card-info">
-                    <h3>Fanart</h3>
-                    <p>Click to see the full collection.</p>
-                <div class="tags"><span class="tag">Packaging</span></div>
-                </div>
-            </a>
+            <a href="fanart.html" class="card reveal">
+                <div class="frame">
+                    <img src="IMG_0880.png" alt="dandadan" class="portfolio-img">
+                </div>
+                <div class="card-info">
+                    <h3>Fanart</h3>
+                    <p>Click to see the full collection.</p>
+                <div class="tags"><span class="tag">Packaging</span></div>
+                </div>
+            </a>
 
-            <a href="original.html" class="card reveal">
-                <div class="frame">
-                    <img src="F2C1D7C5-4CD2-4B2B-9090-96860D29D3D3.jpeg" alt="miuusa" class="portfolio-img">
-                </div>
-                <div class="card-info">
-                    <h3>Original</h3>
-                    <p>original character and design.</p>
-                    <div class="tags"><span class="tag">Art</span></div>
-                </div>
-            </a>
+            <a href="original.html" class="card reveal">
+                <div class="frame">
+                    <img src="F2C1D7C5-4CD2-4B2B-9090-96860D29D3D3.jpeg" alt="miuusa" class="portfolio-img">
+                </div>
+                <div class="card-info">
+                    <h3>Original</h3>
+                    <p>original character and design.</p>
+                    <div class="tags"><span class="tag">Art</span></div>
+                </div>
+            </a>
 
-            <a href="drafts.html" class="card reveal">
-                  <div class="frame">
-                    <img src="IMG_0881.png" alt="yuuri" class="portfolio-img">
-                </div>
-                <div class="card-info">
-                    <h3>Drafts</h3>
-                    <p>rkgk and unfinished work.</p>
-                    <div class="tags"><span class="tag">3D</span></div>
-                </div>
-            </a>
+            <a href="drafts.html" class="card reveal">
+                  <div class="frame">
+                    <img src="IMG_0881.png" alt="yuuri" class="portfolio-img">
+                </div>
+                <div class="card-info">
+                    <h3>Drafts</h3>
+                    <p>rkgk and unfinished work.</p>
+                    <div class="tags"><span class="tag">3D</span></div>
+                </div>
+            </a>
 
-        </div>
-    </section>
+        </div>
+    </section>
 
-    <footer id="about">
-        <div class="reveal">
-            <h2>Let's Talk</h2>
-            <a href="mailto:hello@example.com" class="email-link">hello@example.com</a>
-            <p>© 2024 Portfolio. Designed with bold intent.</p>
-        </div>
-    </footer>
+    <footer id="about">
+        <div class="reveal">
+            <h2>Let's Talk</h2>
+            <a href="mailto:hello@example.com" class="email-link">hello@example.com</a>
+            <p>© 2024 Portfolio. Designed with bold intent.</p>
+        </div>
+    </footer>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Options: Threshold 0 means "trigger as soon as 1 pixel is visible"
-            const observerOptions = {
-                root: null,
-                threshold: 0, 
-                rootMargin: "0px 0px -50px 0px" 
-            };
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Options: Threshold 0 means "trigger as soon as 1 pixel is visible"
+            const observerOptions = {
+                root: null,
+                threshold: 0, 
+                rootMargin: "0px 0px -50px 0px" 
+            };
 
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                    }
-                });
-            }, observerOptions);
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, observerOptions);
 
-            const elements = document.querySelectorAll('.reveal');
-            elements.forEach(el => observer.observe(el));
-        });
-    </script>
+            const elements = document.querySelectorAll('.reveal');
+            elements.forEach(el => observer.observe(el));
+        });
+    </script>
 </body>
 </html>
